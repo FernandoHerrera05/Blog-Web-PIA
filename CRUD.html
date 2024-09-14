@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo crear un CRUD en Django</title>
+    <link rel="stylesheet" href="css/Diseño.css">
+</head>
+<body>
+    <header>
+        <h1>Cómo Crear un CRUD en Django desde Cero</h1>
+        <p>Una guía paso a paso para construir un CRUD (Create, Read, Update, Delete) en Django.</p>
+    </header>
+
+    <section id="intro">
+        <h2>Introducción</h2>
+        <p>Aquí te explico cómo crear un CRUD básico utilizando Django desde cero. Un CRUD te permite Crear, Leer, Actualizar y Eliminar registros en una base de datos. Para ilustrar el proceso, te guiaré paso a paso y te proporcionaré ejemplos prácticos.</p>
+        <figure>
+            <img src="Imagenes/CRUD.jpg" alt="Imagen de introducción al CRUD">
+        </figure>
+    </section>
+
+    <section id="setup">
+        <h2>Parte 1 </h2>
+        <p>Vamos a crear nuestro entorno virtual, el cual nos permite aislar nuestro proyecto con sus dependencias, por si lo movemos a otra computadora, formateamos la PC y casos similares.</p>
+        <p>Antes de ello creamos un directorio con el nombre crud-django5, en donde colocaremos todos los archivos del proyecto.</p>
+        <p>Ingresamos al directorio crud-django5 y allí ejecutamos el siguiente comando para crear nuestro entorno virtual:</p>
+        <figure>
+            <img src="Imagenes/Parte 1.1 (2).png" alt="Codigo fuente">
+        </figure>
+        <p>Activamos el entorno virtual creado anteriormente para poder usarlo (básicamente navegamos por la ruta mientornovirtual/Scripts/activate):</p>
+        <figure>
+            <img src="Imagenes/Parte 1.3.png" alt="Codigo fuente">
+        </figure>
+
+        <p>Ahora ejecutamos el siguiente comando para crear el proyecto nuevo con Django, al proyecto le daré el nombre cruddjango5, tu le puedes poner el nombre que desees:</p>
+        <figure>
+            <img src="Imagenes/Parte 1.4.png" alt="Codigo fuente">
+        </figure>
+
+        <p>Se nos ha  creado el directorio cruddjango5 y en su interior otro directorio con el mismo nombre el cual contiene varios archivos importantes:</p>
+        <figure>
+            <img src="Imagenes/Parte 1.2.png" alt="Codigo fuente">
+        </figure>
+
+        <p>Ahora vamos a verificar que el proyecto se ha creado correctamente, ingresamos al directorio  cruddjango5 y allí arrancaremos el servidor local de Django Framework ejecutando el siguiente comando:</p>
+        <figure>
+            <img src="Imagenes/Parte 1.1.png" alt="Codigo fuente">
+            <img src="Imagenes/Parte 1.png" alt="Codigo fuente">
+        </figure>
+    </section>
+
+    <section id="Proyecto">
+        <h2>Parte 2 </h2>
+        <p>Ingresamos al directorio crud-django5 > cruddjango5 y allí creamos todas nuestras aplicaciones.
+
+            Creamos una aplicación para el sistema CRUD, le pondré de nombre jugos. Tu le puedes poner el nombre que desees.
+            
+            Para crear la aplicación, ejecutamos el siguiente comando:</p>
+        <figure>
+            <img src="Imagenes/Parte 2.png" alt="Codigo fuente">
+        </figure>
+
+        <p>Si queremos que la aplicación jugos, funcione en Django, debemos de registrarla en el archivo llamado settings.py, este archivo se encuentra en crud-django5 > cruddjango5 > cruddjango5 > settings.py:</p>
+        <figure>
+            <img src="Imagenes/Parte 2.1.png" alt="Codigo fuente">
+        </figure>
+
+        <p>Abrimos el archivo settings.py y nos dirigimos  a la sección que dice INSTALLED_APPS y registro la app jugos:</p>
+        <figure>
+            <img src="Imagenes/Parte 2.2.png" alt="Codigo fuente">
+        </figure>
+
+        
+    </section>
+
+    <section id="model">
+       <h2>Parte 3</h2>
+       <p>definen los campos que va tener la tabla jugos, abro el archivo llamado models.py que se encuentra en el directorio llamado también jugos:</p>
+       <figure>
+            <img src="Imagenes/Parte 3.4.png" alt="codigo fuente">
+       </figure>
+       <p>Luego de abrir el archivo models.py le agrego los siguientes campos para la tabla jugos:</p>
+       <figure>
+            <img src="Imagenes/Parte 3.png" alt="codigo fuente">
+       </figure>
+
+       <p>Ahora creo la migración de la tabla jugos en la consola de comandos y ejecuto el siguiente comando:</p>
+       <figure>
+            <img src="Imagenes/Parte 3 (2).png" alt="Codigo fuente">
+       </figure>
+       <p>Procedo a crear la tabla jugos en la base de datos, ejecutando el siguiente comando en mi consola de comandos:</p>
+       <figure>
+            <img src="Imagenes/Parte 3 (1).png" alt="codigo fuente">
+       </figure>
+
+       <p>Verifico en phpMyAdmin y aparece la tabla jugos con sus campos correspondientes:</p>
+       <figure>
+            <img src="Imagenes/Parte 3.3.png" alt="codigo fuente">
+       </figure>
+    </section>
+
+    <section id="views">
+        <h2>Parte 4</h2>
+        <p>Dentro de archivo views.py instanciamos las vistas genéricas de Django y también el modelo Jugos el cual configuramos dentro del archivo models.py en la segunda parte de este tutorial:</p>
+        <p>Crear (Create)
+        Para esta vista genérica creo una clase con el nombre CrearJugo, esta clase usará la vista genérica CreateView en donde mostraremos un formulario para crear un nuevo registro o jugo, en el código colocare unos comentarios que explican para que sirve cada línea del código:</p>
+        <p>Leer (Read)
+        Para esta vista genérica creo una clase con el nombre DetalleJugo que usará la vista genérica DetailView la cual se encargará de mostrar los detalles de un jugo o registro:</p>
+        <p>Actualizar (Update)
+        Para esta vista genérica creo una clase con el nombre ActualizarJugo que usará la vista genérica UpdateView, en esta vista mostraremos un formulario para actualizar un jugo o registro, obviamente de la Base de Datos.</p>
+        <p>Eliminar (Delete)
+        Para esta última vista genérica, crearé una clase con el nombre EliminarJugo que hará uso de la vista genérica DeleteView, esta vista la usaremos para eliminar un registro o jugo de nuestra base de datos, específicamente de la tabla jugos:</p>
+        <figure>
+            <img src="Imagenes/Parte 4.png" alt="codigo fuente">
+            <img src="Imagenes/Parte 4.1.png" alt="codigo fuente">
+            <img src="Imagenes/Parte 4.2.png" alt="codigo fuente">
+        </figure>
+    </section>
+
+    <section id="Urls">
+        <h2>Parte 5 </h2>
+        <p>Dentro del archivo urls.py agregamos las siguientes rutas dentro de urlpatterns = [], mediante estas rutas llamamos a una determinada vista HTML, estas vistas HTML las crearemos más adelante.
+        Recuerda que la ruta admin/ la creo el Framework Django automáticamente cuando se creo el proyecto, así que no hay que tocarla, a menos que sepas lo que haces.</p>
+        <figure>
+            <img src="Imagenes/Parte 5.png" alt="codigo fuente">
+        </figure>
+
+        <p>Cada ves que ingresemos a las vistas detalle, actualizar y eliminar debes pasarle a estas 3 rutas el id del registro o jugo con <int:pk> en donde int es integer y pk es primary key
+        Ya que de esta manera Django puede saber cual es el registro que debe de leer, actualizar y eliminar de la base de datos.</p>
+        <figure>
+            <img src="Imagenes/Parte 5.1.png" alt="codigo fuente">
+            <img src="Imagenes/Parte 5.2.png" alt="codigo fuente">
+        </figure>
+        
+    </section>
+
+    <section id="Templates">
+        <h2>Parte 6</h2>
+        <p>tenemos que crear un directorio llamado templates en donde crearemos 4 archivos HTML que son actualizar.html, crear.html, detalles.html e index.html
+        Recuerda que el directorio templates no viene con Django Framework o se crea automáticamente, este directorio lo debemos crear manualmente dentro del directorio de nuestra aplicación jugos y dentro del directorio templates debemos crear otro directorio llamado jugos, es decir la ruta quedara como crud-django5 > cruddjango5 > jugos > templates > jugos:</p>
+        <figure>
+            <img src="Imagenes/Parte 6.png" alt="codigo fuente">
+        </figure>
+        
+    </section>
+
+    <section id="Finish">
+        <h2>Parte 7</h2>
+        <p>Accede a http://localhost:8000/ en tu navegador y deberías ver la lista de productos y las opciones de crear, editar y eliminar.</p>
+        <figure>
+            <img src="Imagenes/Parte 7.png" alt="codigo fuente">
+            <img src="Imagenes/Parte 7.1.png" alt="codigo fuente">
+        </figure>
+    </section>
+
+    <footer>
+        <p>Para más información, visita el <a href="https://blog.nubecolectiva.com/como-crear-un-crud-con-django-3-1-python-3-9-y-bootstrap-4-6-parte-1/">Sitio Web de Nubecolectiva</a>.</p>
+    </footer>
+</body>
+</html>
