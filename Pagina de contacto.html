@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Contacto</title>
+    <link rel="stylesheet" href="stylesContacto.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Contacto</h1>
+    <form id="contactForm" onsubmit="return validateForm()">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+        <span id="nombreError" class="error"></span>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos">
+        <span id="apellidosError" class="error"></span>
+
+        <label for="tipo-mensaje">Tipo de mensaje:</label>
+        <select id="tipo-mensaje" name="tipo-mensaje">
+            <option value="">Seleccione una opción</option>
+            <option value="queja">Queja</option>
+            <option value="sugerencia">Sugerencia</option>
+            <option value="felicitacion">Felicitación</option>
+        </select>
+        <span id="tipoMensajeError" class="error"></span>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo">
+        <span id="correoError" class="error"></span>
+
+        <label for="telefono">Teléfono móvil:</label>
+        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}">
+        <span id="telefonoError" class="error"></span>
+
+        <label for="genero">Género:</label>
+        <select id="genero" name="genero">
+            <option value="">Seleccione su género</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+        </select>
+        <span id="generoError" class="error"></span>
+
+        <label for="mensaje">Cuerpo del mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+        <span id="mensajeError" class="error"></span>
+
+        <div class="checkbox">
+            <input type="checkbox" id="privacidad" name="privacidad">
+            <label for="privacidad">Acepto la <a href="#">política de privacidad</a>.</label>
+        </div>
+        <span id="privacidadError" class="error"></span>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <p class="privacy">
+        Aviso de confidencialidad: Los datos proporcionados a través de este formulario serán utilizados únicamente para fines de contacto y no serán compartidos con terceros. Para más información, consulta nuestra <a href="#">política de privacidad</a>.
+    </p>
+</div>
+
+<script>
+    function validateForm() {
+        let isValid = true;
+
+        // Limpiar mensajes de error
+        document.getElementById("nombreError").innerText = "";
+        document.getElementById("apellidosError").innerText = "";
+        document.getElementById("tipoMensajeError").innerText = "";
+        document.getElementById("correoError").innerText = "";
+        document.getElementById("telefonoError").innerText = "";
+        document.getElementById("generoError").innerText = "";
+        document.getElementById("mensajeError").innerText = "";
+        document.getElementById("privacidadError").innerText = "";
+
+        // Validaciones
+        const nombre = document.getElementById("nombre").value;
+        const apellidos = document.getElementById("apellidos").value;
+        const tipoMensaje = document.getElementById("tipo-mensaje").value;
+        const correo = document.getElementById("correo").value;
+        const telefono = document.getElementById("telefono").value;
+        const genero = document.getElementById("genero").value;
+        const mensaje = document.getElementById("mensaje").value;
+        const privacidad = document.getElementById("privacidad").checked;
+
+        if (nombre === "") {
+            document.getElementById("nombreError").innerText = "Por favor, ingrese su nombre.";
+            isValid = false;
+        }
+
+        if (apellidos === "") {
+            document.getElementById("apellidosError").innerText = "Por favor, ingrese sus apellidos.";
+            isValid = false;
+        }
+
+        if (tipoMensaje === "") {
+            document.getElementById("tipoMensajeError").innerText = "Por favor, seleccione un tipo de mensaje.";
+            isValid = false;
+        }
+
+        if (correo === "") {
+            document.getElementById("correoError").innerText = "Por favor, ingrese su correo electrónico.";
+            isValid = false;
+        }
+
+        if (telefono === "" || telefono.length !== 10) {
+            document.getElementById("telefonoError").innerText = "Por favor, ingrese un teléfono válido (10 dígitos).";
+            isValid = false;
+        }
+
+        if (genero === "") {
+            document.getElementById("generoError").innerText = "Por favor, seleccione su género.";
+            isValid = false;
+        }
+
+        if (mensaje === "") {
+            document.getElementById("mensajeError").innerText = "Por favor, ingrese su mensaje.";
+            isValid = false;
+        }
+
+        if (!privacidad) {
+            document.getElementById("privacidadError").innerText = "Debe aceptar la política de privacidad.";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>
