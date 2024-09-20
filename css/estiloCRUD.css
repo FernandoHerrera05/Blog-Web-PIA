@@ -58,3 +58,25 @@ ul{
 li{
     margin-bottom: 15px;
 }
+
+/* nav */
+.navegar{
+    background-color: #51f554c2;
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin: 10px;
+}
+
+a:hover{
+    font-size:20px;
+    padding: 5px;
+    font-weight: bold;
+    background-color: rgba(144, 217, 76, 0.471);
+    color: white;
+    text-decoration: none;
+    border-radius: 2px;
+}
