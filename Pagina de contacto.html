@@ -8,132 +8,110 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>Formulario</h1>
     <form id="contactForm" onsubmit="return validateForm()">
+        <h2>Contacto</h2>
+
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre">
-        <span id="nombreError" class="error"></span>
 
         <label for="apellidos">Apellidos:</label>
         <input type="text" id="apellidos" name="apellidos">
-        <span id="apellidosError" class="error"></span>
 
-        <label for="tipo-mensaje">Tipo de mensaje:</label>
-        <select id="tipo-mensaje" name="tipo-mensaje">
-            <option value="">Seleccione una opción</option>
-            <option value="queja">Queja</option>
-            <option value="sugerencia">Sugerencia</option>
-            <option value="felicitacion">Felicitación</option>
+        <label for="tipoMensaje">Tipo de mensaje:</label>
+        <select id="tipoMensaje" name="tipoMensaje">
+            <option value="">Seleccionar</option>
+            <option value="Queja">Queja</option>
+            <option value="Sugerencia">Sugerencia</option>
+            <option value="Felicitación">Felicitación</option>
         </select>
-        <span id="tipoMensajeError" class="error"></span>
 
         <label for="correo">Correo electrónico:</label>
         <input type="email" id="correo" name="correo">
-        <span id="correoError" class="error"></span>
 
         <label for="telefono">Teléfono móvil:</label>
-        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}">
-        <span id="telefonoError" class="error"></span>
+        <input type="number" id="telefono" name="telefono">
 
         <label for="genero">Género:</label>
         <select id="genero" name="genero">
-            <option value="">Seleccione su género</option>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
+            <option value="">Seleccionar</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
         </select>
-        <span id="generoError" class="error"></span>
 
         <label for="mensaje">Cuerpo del mensaje:</label>
         <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-        <span id="mensajeError" class="error"></span>
 
-        <div class="checkbox">
-            <input type="checkbox" id="privacidad" name="privacidad">
-            <label for="privacidad">Acepto la política de privacidad</label>
-        </div>
-        <span id="privacidadError" class="error"></span>
+        <p><strong>Aviso de Confidencialidad:</strong> Los datos proporcionados en este formulario serán tratados de manera confidencial y no se compartirán con terceros sin su consentimiento.</p>
 
-        <input type="submit" value="Enviar">
+        <label>
+            <input type="checkbox" id="privacidad" name="privacidad"> Acepto la política de privacidad
+        </label>
+
+        <button type="submit">Enviar</button>
+
+        <p id="message" class="error"></p>
     </form>
 
-    <p class="privacy">
-        Aviso de confidencialidad: Los datos proporcionados a través de este formulario serán utilizados únicamente para fines de contacto y no serán compartidos con terceros.
-    </p>
-</div>
+    <script>
+        function validateForm() {
+            // Obtener los valores de los campos del formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const apellidos = document.getElementById('apellidos').value.trim();
+            const tipoMensaje = document.getElementById('tipoMensaje').value;
+            const correo = document.getElementById('correo').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const genero = document.getElementById('genero').value;
+            const mensaje = document.getElementById('mensaje').value.trim();
+            const privacidad = document.getElementById('privacidad').checked;
+            const errorMessage = document.getElementById('message');
 
-<script>
-    function validateForm() {
-        let isValid = true;
+            // Validaciones
+            if (!nombre) {
+                errorMessage.textContent = 'Por favor, ingrese su nombre.';
+                return false;
+            }
 
-        // Limpiar mensajes de error
-        document.getElementById("nombreError").innerText = "";
-        document.getElementById("apellidosError").innerText = "";
-        document.getElementById("tipoMensajeError").innerText = "";
-        document.getElementById("correoError").innerText = "";
-        document.getElementById("telefonoError").innerText = "";
-        document.getElementById("generoError").innerText = "";
-        document.getElementById("mensajeError").innerText = "";
-        document.getElementById("privacidadError").innerText = "";
+            if (!apellidos) {
+                errorMessage.textContent = 'Por favor, ingrese sus apellidos.';
+                return false;
+            }
 
-        // Validaciones
-        const nombre = document.getElementById("nombre").value;
-        const apellidos = document.getElementById("apellidos").value;
-        const tipoMensaje = document.getElementById("tipo-mensaje").value;
-        const correo = document.getElementById("correo").value;
-        const telefono = document.getElementById("telefono").value;
-        const genero = document.getElementById("genero").value;
-        const mensaje = document.getElementById("mensaje").value;
-        const privacidad = document.getElementById("privacidad").checked;
+            if (!tipoMensaje) {
+                errorMessage.textContent = 'Por favor, seleccione el tipo de mensaje.';
+                return false;
+            }
 
-        if (nombre === "") {
-            document.getElementById("nombreError").innerText = "Por favor, ingrese su nombre.";
-            isValid = false;
-        }
+            if (!correo) {
+                errorMessage.textContent = 'Por favor, ingrese su correo electrónico.';
+                return false;
+            }
 
-        if (apellidos === "") {
-            document.getElementById("apellidosError").innerText = "Por favor, ingrese sus apellidos.";
-            isValid = false;
-        }
+            if (!telefono) {
+                errorMessage.textContent = 'Por favor, ingrese su teléfono móvil.';
+                return false;
+            }
 
-        if (tipoMensaje === "") {
-            document.getElementById("tipoMensajeError").innerText = "Por favor, seleccione un tipo de mensaje.";
-            isValid = false;
-        }
+            if (!genero) {
+                errorMessage.textContent = 'Por favor, seleccione su género.';
+                return false;
+            }
 
-        if (correo === "") {
-            document.getElementById("correoError").innerText = "Por favor, ingrese su correo electrónico.";
-            isValid = false;
-        }
+            if (!mensaje) {
+                errorMessage.textContent = 'Por favor, ingrese el cuerpo del mensaje.';
+                return false;
+            }
 
-        if (telefono === "" || telefono.length !== 10) {
-            document.getElementById("telefonoError").innerText = "Por favor, ingrese un teléfono válido (10 dígitos).";
-            isValid = false;
-        }
+            if (!privacidad) {
+                errorMessage.textContent = 'Debe aceptar la política de privacidad.';
+                return false;
+            }
 
-        if (genero === "") {
-            document.getElementById("generoError").innerText = "Por favor, seleccione su género.";
-            isValid = false;
-        }
-
-        if (mensaje === "") {
-            document.getElementById("mensajeError").innerText = "Por favor, ingrese su mensaje.";
-            isValid = false;
-        }
-
-        if (!privacidad) {
-            document.getElementById("privacidadError").innerText = "Debe aceptar la política de privacidad.";
-            isValid = false;
-        }
-
-        return isValid;
-
-        // Si todas las validaciones pasan
-        alert('Mensaje enviado, gracias ' + nombre);
+            // Si todas las validaciones pasan
+            alert('Mensaje enviado, gracias ' + nombre);
             return true;
-    }
-</script>
+        }
+    </script>
 
 </body>
 </html>
