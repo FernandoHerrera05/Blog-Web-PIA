@@ -1,25 +1,23 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: rgba(255, 255, 255, 0.63);
+    font-family: Arial, sans-serif;
     margin: 0;
+    background-color: rgba(196, 153, 153, 0.5);
     padding: 0;
 }
-.container {
-    max-width: 600px;
+form {
+    max-width: 500px;
     margin: 50px auto;
-    background-color: #7bec7f;
     padding: 20px;
+    background: #7bec7f;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-h1 {
-    text-align: center;
-    color: black;
-}
-form {
     display: flex;
     flex-direction: column;
 }
+h2 {
+    text-align: center;
+    color: black;
+}    
 label {
     margin: 15px 0 5px;
     font-weight: bold;
@@ -30,30 +28,22 @@ input, select, textarea {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-input[type="submit"] {
-    background-color: #28a745;
+input[type="checkbox"] {
+    width: auto;
+}
+button {
+    background-color: #218838;
     color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 12px;
-    cursor: pointer;
     border-radius: 5px;
-    margin-top: 20px;
+    cursor: pointer;
+    width: 100%;
 }
-input[type="submit"]:hover {
-    background-color: #000000;
-}
-.checkbox {
-    display: flex;
-    align-items: center;
-}
-.checkbox input {
-    margin-right: 10px;
+button:hover {
+    background-color: #000;
 }
 .error {
     color: red;
-    font-size: 12px;
-}
-.privacy {
-    font-size: 12px;
-    color: #000000;
+    font-size: 0.9em;
 }
